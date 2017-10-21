@@ -136,7 +136,8 @@ def SEND_MESSAGE(op):
         if msg.toType == 2:
             if msg.contentType == 0:
 		if msg.text == "Help":
-                    sendMessage(msg.to, "list command\n-Mid (melihat member id)\n-Gid (melihat group id)\n-Me (mengirim kontak diri sendiri)\n-Ginfo (melihat informasi grup)\n-Gname: (merubah nama grup)/n-Ourl (membuka qr grup)\n-Curl (menutup qr grup)\n-Gurl (memperlihatkkan qr grup)\n-Kick: (mengkick member)\n-Nk: (mengkick member)\n-Cancel (mengcancel semua invitan ke grup)\n-Invite: (menginvite orang mengunakan mid)\n-Gift (buat iseng2 doang wkwk)\n-Set (memasang set point)\n-Tes (melihat hasil set point)\n\nAuthor by: Khamil\nhttp://line.me/ti/p/DYGVAkyrAI\nwww.instagram.com/milkhamil")
+                    sendMessage(msg.to, "Self Bot----------------------------------------\n\n[•] Me\n[•] Mid\n[•] Gid\n[•] Ginfo\n[•] Gurl\n[•] Gname:\n[•] Ourl\n[•] Curl\n[•] Kick:\n[•] Nk:\n[•] Invite\n[•] Cancel\n[•] Gift\n[•] Set\n[•] Tes\n\n----------------------------------------\nAuthor by: Khamil\nhttp://line.me/ti/p/DYGVAkyrAI
+\nwww.instagram.com/milkhamil")
                 if msg.text == "Mid":
                     sendMessage(msg.to, msg.from_)
                 if msg.text == "Gid":
