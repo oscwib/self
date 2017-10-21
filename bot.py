@@ -205,11 +205,11 @@ def SEND_MESSAGE(op):
                     client.inviteIntoGroup(msg.to, [key])
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+" I invited you")
-				if "Speed" in msg.text:
-					start = time.time()
-					client.sendText(msg.to, "Progress...")
-					elapsed_time = time.time() - start
-					client.sendText(msg.to, "%sseconds" % (elapsed_time))
+		if "Speed" in msg.text:
+		    start = time.time()
+		    client.sendText(msg.to, "Progress...")
+		    elapsed_time = time.time() - start
+		    client.sendText(msg.to, "%sseconds" % (elapsed_time))
                 if msg.text == "Me":
                     M = Message()
                     M.to = msg.to
