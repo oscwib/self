@@ -136,7 +136,7 @@ def SEND_MESSAGE(op):
         if msg.toType == 2:
             if msg.contentType == 0:
 		if msg.text == "/help":
-                    sendMessage(msg.to, "Self Bot-------------------------\n\n[•] /me\n[•] /mid\n[•] /gid\n[•] /ginfo\n[•] /gurl\n[•] /gname:\n[•] /ourl\n[•] /curl\n[•] /kick:\n[•] /nk:\n[•] /invite\n[•] /cancel\n[•] /gift\n[•] /set\n[•] /tes\n\n-------------------------\nAuthor by: Khamil\nwww.instagram.com/milkhamil")
+                    sendMessage(msg.to, "#Self Bot#\n-----------------\n[•] /me\n[•] /mid\n[•] /gid\n[•] /ginfo\n[•] /gurl\n[•] /gname:\n[•] /ourl\n[•] /curl\n[•] /kick:\n[•] /nk:\n[•] /invite\n[•] /cancel\n[•] /gift\n[•] /set\n[•] /tes\n\n-------------------------\nAuthor by: Khamil\nwww.instagram.com/milkhamil")
                 if msg.text == "/mid":
                     sendMessage(msg.to, msg.from_)
                 if msg.text == "/gid":
