@@ -245,9 +245,9 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "TERCYDUC %s\nmending leave aja daripada sider mulu\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "ini semua orang yg read chat%s\nini orang yg cuma ngeread alias sider \n\n\n%stukang sider mending leave aja♪\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
-                        sendMessage(msg.to, "Set point belom dipasang pea\nketik「Set」baru bisa liat sider")
+                        sendMessage(msg.to, "Set point belum di pasang pea.\nketik「/set」baru lanjt ketik「/tes」")
                 else:
                     pass
         else:
