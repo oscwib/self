@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " kasian\ndi kick(*´･ω･*)")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " kasian di kick\n(；￣Д￣）")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " dadah\hati hati ya diluar grup(*´･ω･*)")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " dadah, hati hati ya diluar grup\n└(○｀ε´○)┘")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -135,6 +135,8 @@ def SEND_MESSAGE(op):
                 pass
         if msg.toType == 2:
             if msg.contentType == 0:
+		if msg.text == "Help":
+                    sendMessage(msg.to, "list command\n-Mid (melihat member id)\n-Gid (melihat group id)\n-Me (mengirim kontak diri sendiri)\n-Ginfo (melihat informasi grup)\n-Gname: (merubah nama grup)/n-Ourl (membuka qr grup)\n-Curl (menutup qr grup)\n-Gurl (memperlihatkkan qr grup)\n-Kick: (mengkick member)\n-Nk: (mengkick member)\n-Cancel (mengcancel semua invitan ke grup)\n-Invite: (menginvite orang mengunakan mid)\n-Gift (buat iseng2 doang wkwk)\n-Set (memasang set point)\n-Tes (melihat hasil set point)\n\nAuthor by: Khamil\nhttp://line.me/ti/p/DYGVAkyrAI\nwww.instagram.com/milkhamil")
                 if msg.text == "Mid":
                     sendMessage(msg.to, msg.from_)
                 if msg.text == "Gid":
@@ -175,7 +177,7 @@ def SEND_MESSAGE(op):
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"sorry")
+                    sendMessage(msg.to, ""+contact.displayName+"mampus")
                 if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -186,13 +188,13 @@ def SEND_MESSAGE(op):
                         sendMessage(msg.to, "bye")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
-                        sendMessage(msg.to, ""+contact.displayName+" Sorry")
+                        sendMessage(msg.to, ""+contact.displayName+" dadah")
                     else:
                         sendMessage(msg.to, "wtf?")
                 if msg.text == "Cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
-                        sendMessage(op.message.to, "No one is inviting.")
+                        sendMessage(op.message.to, "dilarang invite invite.")
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
@@ -214,12 +216,10 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+"'s contact")
-                if msg.text == "Time":
-                    sendMessage(msg.to, "Current time is" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "is")
                 if msg.text == "Gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "Set":
-                    sendMessage(msg.to, "I have set a read point ♪\n「tes」I will show you who I have read ♪")
+                    sendMessage(msg.to, "set point udah di pasang♪\nketik 「tes」untuk liat siapa aja yg sider")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
@@ -240,9 +240,9 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "People who readed %s\nthat's it\n\nPeople who have ignored reads\n%sIt is abnormal ♪\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "TERCYDUC %s\nmending leave aja daripada sider mulu\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
-                        sendMessage(msg.to, "An already read point has not been set.\n「set」you can send ♪ read point will be created ♪")
+                        sendMessage(msg.to, "Set point belom dipasang pea\nketik「Set」baru bisa liat sider")
                 else:
                     pass
         else:
