@@ -135,13 +135,13 @@ def SEND_MESSAGE(op):
                 pass
         if msg.toType == 2:
             if msg.contentType == 0:
-		if msg.text == "/help":
-                    sendMessage(msg.to, "#Self Bot#\n-----------------\n[•] /me\n[•] /mid\n[•] /gid\n[•] /ginfo\n[•] /gurl\n[•] /gname:\n[•] /ourl\n[•] /curl\n[•] /kick:\n[•] /nk:\n[•] /invite\n[•] /cancel\n[•] /gift\n[•] /tagall\n[•] /set\n[•] /tes\n\n-------------------------\nAuthor by: Khamil\nwww.instagram.com/milkhamil")
-                if msg.text == "/mid":
+		if msg.text == "Help.":
+                    sendMessage(msg.to, "Self Bot\n----------------------------------------\n[•] Me.\n[•] Mid.\n[•] Gid.\n[•] Ginfo.\n[•] Gurl.\n[•] Gname:.\n[•] Ourl.\n[•] Curl.\n[•] Kick:.\n[•] Nk:.\n[•] Invite.\n[•] Cancel.\n[•] Gift.\n[•] Set.\n[•] Tes.\n\n----------------------------------------\nAuthor by: Khamil\nhttp://line.me/ti/p/DYGVAkyrAI\nwww.instagram.com/milkhamil")
+                if msg.text == "Mid.":
                     sendMessage(msg.to, msg.from_)
-                if msg.text == "/gid":
+                if msg.text == "Gid.":
                     sendMessage(msg.to, msg.to)
-                if msg.text == "/ginfo":
+                if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
                     md = "[Group Name]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[Group Picture]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
                     if group.preventJoinByTicket is False: md += "\n\nInvitationURL: Permitted\n"
@@ -149,15 +149,15 @@ def SEND_MESSAGE(op):
                     if group.invitee is None: md += "\nMembers: " + str(len(group.members)) + "人\n\nInviting: 0People"
                     else: md += "\nMembers: " + str(len(group.members)) + "People\nInvited: " + str(len(group.invitee)) + "People"
                     sendMessage(msg.to,md)
-                if "/gname:" in msg.text:
+                if "Gname:" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
                     group.name = key
                     client.updateGroup(group)
                     sendMessage(msg.to,"Group Name"+key+"Canged to")
-                if msg.text == "/gurl":
+                if msg.text == "Gurl.":
                     sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
-                if msg.text == "ourl":
+                if msg.text == "Ourl.":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == False:
                         sendMessage(msg.to, "already open")
@@ -165,7 +165,7 @@ def SEND_MESSAGE(op):
                         group.preventJoinByTicket = False
                         client.updateGroup(group)
                         sendMessage(msg.to, "URL Open")
-                if msg.text == "/curl":
+                if msg.text == "Curl.":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == True:
                         sendMessage(msg.to, "already close")
@@ -173,12 +173,12 @@ def SEND_MESSAGE(op):
                         group.preventJoinByTicket = True
                         client.updateGroup(group)
                         sendMessage(msg.to, "URL close")
-                if "/kick:" in msg.text:
+                if "Kick:" in msg.text:
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+"mampus")
-                if "/nk:" in msg.text:
+                if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
                     Names = [contact.displayName for contact in group.members]
@@ -191,7 +191,7 @@ def SEND_MESSAGE(op):
                         sendMessage(msg.to, ""+contact.displayName+" dadah")
                     else:
                         sendMessage(msg.to, "wtf?")
-                if msg.text == "/cancel":
+                if msg.text == "Cancel.":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
                         sendMessage(op.message.to, "dilarang invite invite.")
@@ -199,19 +199,26 @@ def SEND_MESSAGE(op):
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
                         sendMessage(msg.to, str(len(group.invitee)) + " Done")
-                if "/invite:" in msg.text:
+                if "Invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
                     client.inviteIntoGroup(msg.to, [key])
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+" I invited you")
-                if msg.text == "/me":
+                if msg.text == "Me.":
                     M = Message()
                     M.to = msg.to
                     M.contentType = 13
                     M.contentMetadata = {'mid': msg.from_}
                     client.sendMessage(M)
-                if msg.text in ["/tagall"]:
+                if "Show:" in msg.text:
+                    key = msg.text[-33:]
+                    sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
+                    contact = client.getContact(key)
+                    sendMessage(msg.to, ""+contact.displayName+"'s contact")
+                if msg.text == "Gift.":
+                    sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
+		if msg.text in ["Tagall."]:
 										group = client.getGroup(msg.to)
 										mem = [contact.mid for contact in group.members]
 										for mm in mem:
@@ -223,15 +230,7 @@ def SEND_MESSAGE(op):
 												try:
 														client.sendMessage(msg)
 												except Exception as error:
-																										print error
-                if "/show:" in msg.text:
-                    key = msg.text[-33:]
-                    sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
-                    contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"'s contact")
-                if msg.text == "/gift":
-                    sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-                if msg.text == "/set":
+                if msg.text == "Set.":
                     sendMessage(msg.to, "set point udah di pasang♪\nketik 「tes」untuk liat siapa aja yg sider")
                     try:
                         del wait['readPoint'][msg.to]
@@ -243,7 +242,7 @@ def SEND_MESSAGE(op):
                     wait['setTime'][msg.to] = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S')
                     wait['ROM'][msg.to] = {}
                     print wait
-                if msg.text == "/tes":
+                if msg.text == "Tes.":
                     if msg.to in wait['readPoint']:
                         if wait["ROM"][msg.to].items() == []:
                             chiya = ""
@@ -253,9 +252,9 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "ini semua orang yg read chat%s\n\nini orang yg cuma ngeread alias sider \n\n%stukang sider mending leave aja♪\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "TERCYDUC %s\nmending leave aja daripada sider mulu\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
-                        sendMessage(msg.to, "Set point belum di pasang pea.\nketik「/set」baru lanjt ketik「/tes」")
+                        sendMessage(msg.to, "Set point belom dipasang pea\nketik「Set.」baru abis itu ketik「Tes.」")
                 else:
                     pass
         else:
