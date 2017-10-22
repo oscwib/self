@@ -230,6 +230,7 @@ def SEND_MESSAGE(op):
 												try:
 														client.sendMessage(msg)
 												except Exception as error:
+													
                 if msg.text == "Set.":
                     sendMessage(msg.to, "set point udah di pasang♪\nketik 「tes」untuk liat siapa aja yg sider")
                     try:
