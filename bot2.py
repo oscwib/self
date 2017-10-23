@@ -159,7 +159,7 @@ def SEND_MESSAGE(op):
                     print "ok"
                     _name = msg.text.replace("Burn","")
                     gs = client.getGroup(msg.to)
-                    sendMessage(msg.to,"Bentar nyari korek dulu")
+                    sendMessage(msg.to,"􁤁􀅧korek􏿿􀜁􀅔haha􏿿Bentar")
                     targets = []
                     for g in gs.members:
                         if _name in g.displayName:
