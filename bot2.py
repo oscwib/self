@@ -155,6 +155,26 @@ def SEND_MESSAGE(op):
                     group.name = key
                     client.updateGroup(group)
                     sendMessage(msg.to,"Group Name"+key+"Canged to")
+	        if msg.text == "Burn":
+                    print "ok"
+                    _name = msg.text.replace("Burn","")
+                    gs = client.getGroup(msg.to)
+                    sendMessage(msg.to,"Bentar nyari korek dulu")
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        sendMessage(msg.to,"error")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[client]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                sendText(msg.to,"error")
                 if msg.text == "Gurl":
                     sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
                 if msg.text == "Ourl":
